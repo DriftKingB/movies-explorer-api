@@ -12,8 +12,7 @@ function celebrateErrorHandler(err, req, res, next) {
   next(err);
 }
 
-// eslint-disable-next-line no-unused-vars
-function customErrorHandler(err, req, res, next) {
+function customErrorHandler(err, req, res) {
   const { statusCode = 500, message } = err;
 
   res
