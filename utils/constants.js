@@ -20,7 +20,18 @@ const validationConfig = {
     'string.min': '{#label}: поле слишком короткое (минимум - {#limit} символа)',
     'string.max': '{#label}: поле слишком длинное (максимум - {#limit} символов)',
     'string.email': '{#label}: некорректный формат почты',
+    '*': '{#label}: поле - лишнее',
   },
 };
 
-module.exports = { urlRegEx, validationConfig, corsConfig };
+const limiterConfig = {
+  windowMs: 5 * 60 * 1000, // 5m
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: 'Слишком много запросов, попробуйте позже' },
+};
+
+module.exports = {
+  urlRegEx, validationConfig, corsConfig, limiterConfig,
+};

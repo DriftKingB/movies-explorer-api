@@ -47,7 +47,10 @@ function updateUser(req, res, next) {
       res.send({ data: card });
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.name === 'MongoServerError') {
+        next(new KeyDublicateError('Пользователь с таким email уже существует'));
+        return;
+      } if (err.name === 'ValidationError') {
         next(new ValidationError('Ошибка валидации mongoose'));
         return;
       }

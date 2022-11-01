@@ -10,10 +10,21 @@ function getMovies(req, res, next) {
 function createMovie(req, res, next) {
   const owner = req.user;
   const {
-    country, director, duration, year, description, image, trailerLink, thumbnail, nameRu, nameEn,
+    movieId,
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    nameRu,
+    nameEn,
   } = req.body;
 
   Movie.create({
+    movieId,
     country,
     director,
     duration,
@@ -39,11 +50,14 @@ function createMovie(req, res, next) {
 function removeMovie(req, res, next) {
   const { user, params } = req;
   Movie.checkUserRights(params.movieId, user._id)
-    .then(({ _id }) => {
-      Movie.findByIdAndDelete(_id)
-        .then((movie) => {
-          res.send({ data: movie });
-        });
+    .then((movie) => {
+      const id = movie.movieId;
+
+      Movie.findOneAndDelete({ movieId: id })
+        .then((mov) => {
+          res.send({ data: mov });
+        })
+        .catch((err) => next(err));
     })
     .catch((err) => {
       if (err.name === 'CastError') {

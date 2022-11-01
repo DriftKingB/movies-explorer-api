@@ -4,6 +4,11 @@ const PermissionError = require('../errors/PermissionError');
 const { urlRegEx } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
+  movieId: {
+    type: Number,
+    required: true,
+  },
+
   country: {
     type: String,
     required: true,
@@ -64,8 +69,8 @@ const movieSchema = new mongoose.Schema({
   },
 });
 
-movieSchema.statics.checkUserRights = function (movieId, userId) {
-  return this.findOne({ _id: movieId })
+movieSchema.statics.checkUserRights = function (movId, userId) {
+  return this.findOne({ movieId: movId })
     .orFail(new NotFoundError('Запрашиваемый фильм не найден'))
     .then((movie) => {
       if (movie.owner.equals(userId)) {

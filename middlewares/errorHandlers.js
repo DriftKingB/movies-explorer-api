@@ -12,12 +12,14 @@ function celebrateErrorHandler(err, req, res, next) {
   next(err);
 }
 
-function customErrorHandler(err, req, res) {
+function customErrorHandler(err, req, res, next) {
   const { statusCode = 500, message } = err;
 
   res
     .status(statusCode)
     .send({ message: statusCode === 500 ? 'Ошибка сервера' : message });
+
+  next();
 }
 
 module.exports = {
