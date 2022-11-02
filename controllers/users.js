@@ -27,7 +27,7 @@ function createUser(req, res, next) {
         res.send({ data: usr });
       })
       .catch((err) => {
-        if (err.name === 'MongoServerError') {
+        if (err.code === 11000) {
           next(new KeyDublicateError('Пользователь с таким email уже существует'));
           return;
         } if (err.name === 'ValidationError') {

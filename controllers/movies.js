@@ -19,8 +19,8 @@ function createMovie(req, res, next) {
     image,
     trailerLink,
     thumbnail,
-    nameRu,
-    nameEn,
+    nameRU,
+    nameEN,
   } = req.body;
 
   Movie.create({
@@ -33,8 +33,8 @@ function createMovie(req, res, next) {
     image,
     trailerLink,
     thumbnail,
-    nameRu,
-    nameEn,
+    nameRU,
+    nameEN,
     owner,
   })
     .then((movie) => res.send({ data: movie }))

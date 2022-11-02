@@ -3,8 +3,8 @@ const urlRegEx = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()
 const corsConfig = {
   origin: [
     'http://localhost:3000',
-    'https://domesto.students.nomoredomains.icu',
-    'http://domesto.students.nomoredomains.icu',
+    'https://removie.students.nomoredomains.icu',
+    'http://removie.students.nomoredomains.icu',
   ],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
