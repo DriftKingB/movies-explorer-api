@@ -5,6 +5,7 @@ const corsConfig = {
     'http://localhost:3000',
     'https://removie.students.nomoredomains.icu',
     'http://removie.students.nomoredomains.icu',
+    'http://192.168.1.72:3000',
   ],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
