@@ -21,11 +21,7 @@ function createUser(req, res, next) {
     .then((hash) => User.create({
       name, password: hash, email,
     })
-      .then((user) => {
-        const usr = user.toObject({ useProjection: true });
-
-        res.send({ data: usr });
-      })
+      .then(() => next())
       .catch((err) => {
         if (err.code === 11000) {
           next(new KeyDublicateError('Пользователь с таким email уже существует'));
