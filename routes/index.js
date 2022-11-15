@@ -13,4 +13,5 @@ router.use('/movies', require('./movies'));
 router.all('*', (req, res, next) => {
   next(new NotFoundError('Указан некорректный путь'));
 });
+
 module.exports = router;
