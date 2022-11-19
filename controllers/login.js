@@ -19,7 +19,7 @@ function handleLogin(req, res, next) {
           httpOnly: true,
           maxAge: 1000 * 60 * 60 * 24 * 7, // 7d
           sameSite: 'none',
-          secure: true,
+          // secure: true,
         })
         .send({ data: token });
     })
