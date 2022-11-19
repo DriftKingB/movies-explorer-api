@@ -21,6 +21,11 @@ function handleLogin(req, res, next) {
           sameSite: 'none',
           // secure: true,
         })
+        .cookie('jwt-exists', 'true', {
+          maxAge: 1000 * 60 * 60 * 24 * 7, // 7d
+          sameSite: 'none',
+          // secure: true,
+        })
         .send({ data: token });
     })
     .catch(next);
