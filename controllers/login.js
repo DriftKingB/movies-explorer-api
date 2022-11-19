@@ -15,12 +15,7 @@ function handleLogin(req, res, next) {
       );
 
       res
-        .cookie('jwt', token, {
-          httpOnly: true,
-          maxAge: 1000 * 60 * 60 * 24 * 7, // 7d
-          sameSite: 'none',
-          // secure: true,
-        })
+
         .cookie('jwt-exists', 'true', {
           maxAge: 1000 * 60 * 60 * 24 * 7, // 7d
           sameSite: 'none',
