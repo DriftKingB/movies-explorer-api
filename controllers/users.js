@@ -14,10 +14,10 @@ function getCurrentUser(req, res, next) {
 
 function createUser(req, res, next) {
   const {
-    name, email,
+    name, email, password,
   } = req.body;
 
-  bcrypt.hash(req.body.password, 16)
+  bcrypt.hash(password, 16)
     .then((hash) => User.create({
       name, password: hash, email,
     })
