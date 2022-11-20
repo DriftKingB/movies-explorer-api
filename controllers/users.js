@@ -1,5 +1,3 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 const NotFoundError = require('../errors/NotFoundError');
@@ -25,23 +23,7 @@ function createUser(req, res, next) {
     .then((hash) => User.create({
       name, password: hash, email,
     })
-      .then((user) => {
-        const { NODE_ENV, JWT_SECRET } = process.env;
-        const token = jwt.sign(
-          { _id: user._id },
-          NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-          { expiresIn: '7d' },
-        );
-
-        res
-          .cookie('jwt', token, {
-            httpOnly: true,
-            maxAge: 1000 * 60 * 60 * 24 * 7, // 7d
-            sameSite: 'none',
-            secure: true,
-          })
-          .send({ data: token });
-      })
+      .then(() => next())
       .catch((err) => {
         if (err.code === 11000) {
           next(new KeyDublicateError('Пользователь с таким email уже существует'));
