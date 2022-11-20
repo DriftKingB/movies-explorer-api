@@ -21,7 +21,7 @@ function createUser(req, res, next) {
     .then((hash) => User.create({
       name, password: hash, email,
     })
-      .then()
+      .then((user) => res.send({ data: user }))
       .catch((err) => {
         if (err.code === 11000) {
           next(new KeyDublicateError('Пользователь с таким email уже существует'));
