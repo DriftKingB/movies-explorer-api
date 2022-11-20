@@ -4,6 +4,8 @@ const NotFoundError = require('../errors/NotFoundError');
 const KeyDublicateError = require('../errors/KeyDublicateError');
 const ValidationError = require('../errors/ValidationError');
 
+User.syncIndexes();
+
 function getCurrentUser(req, res, next) {
   User.findById(req.user._id)
     .then((user) => {
