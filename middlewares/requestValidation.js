@@ -3,7 +3,7 @@ const { urlRegEx, validationConfig } = require('../utils/constants');
 
 const validateMovie = celebrate({
   body: Joi.object().keys({
-    movieId: Joi.number().required(),
+    id: Joi.number().required(),
     country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
@@ -41,7 +41,7 @@ const validateUserInfo = celebrate({
 
 const validateMovieParams = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.number().required(),
+    id: Joi.number().required(),
   }),
 }, {
   messages: { '*': 'Указан некорректный id' },

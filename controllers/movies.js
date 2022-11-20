@@ -10,7 +10,7 @@ function getMovies(req, res, next) {
 function createMovie(req, res, next) {
   const owner = req.user;
   const {
-    movieId,
+    id,
     country,
     director,
     duration,
@@ -24,7 +24,7 @@ function createMovie(req, res, next) {
   } = req.body;
 
   Movie.create({
-    movieId,
+    id,
     country,
     director,
     duration,
@@ -49,11 +49,9 @@ function createMovie(req, res, next) {
 
 function removeMovie(req, res, next) {
   const { user, params } = req;
-  Movie.checkUserRights(params.movieId, user._id)
+  Movie.checkUserRights(params.id, user._id)
     .then((movie) => {
-      const id = movie.movieId;
-
-      Movie.findOneAndDelete({ movieId: id })
+      Movie.findOneAndDelete({ id: movie.id })
         .then((mov) => {
           res.send({ data: mov });
         })
