@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 const NotFoundError = require('../errors/NotFoundError');
 const KeyDublicateError = require('../errors/KeyDublicateError');
 const ValidationError = require('../errors/ValidationError');
+const handleLogin = require('./login');
 
 User.syncIndexes();
 
@@ -23,7 +24,7 @@ function createUser(req, res, next) {
     .then((hash) => User.create({
       name, password: hash, email,
     })
-      .then(() => next())
+      .then(() => handleLogin(req, res, next))
       .catch((err) => {
         if (err.code === 11000) {
           next(new KeyDublicateError('Пользователь с таким email уже существует'));
