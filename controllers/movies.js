@@ -2,7 +2,9 @@ const Movie = require('../models/movieModel');
 const ValidationError = require('../errors/ValidationError');
 
 function getMovies(req, res, next) {
-  Movie.find({})
+  const owner = req.user;
+
+  Movie.find({ owner })
     .then((movies) => res.send({ data: movies }))
     .catch(next);
 }
