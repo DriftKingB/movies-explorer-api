@@ -1,6 +1,8 @@
 const Movie = require('../models/movieModel');
 const ValidationError = require('../errors/ValidationError');
 
+Movie.syncIndexes();
+
 function getMovies(req, res, next) {
   const owner = req.user;
 
