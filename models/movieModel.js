@@ -70,7 +70,7 @@ const movieSchema = new mongoose.Schema({
 });
 
 movieSchema.statics.checkUserRights = function (id, userId) {
-  return this.findOne({ id })
+  return this.findOne({ id, owner: userId })
     .orFail(new NotFoundError('Запрашиваемый фильм не найден'))
     .then((movie) => {
       if (movie.owner.equals(userId)) {

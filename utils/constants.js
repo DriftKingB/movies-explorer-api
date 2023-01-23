@@ -21,6 +21,7 @@ const validationConfig = {
     'string.min': '{#label}: поле слишком короткое (минимум - {#limit} символа)',
     'string.max': '{#label}: поле слишком длинное (максимум - {#limit} символов)',
     'string.email': '{#label}: некорректный формат почты',
+    'string.base': '{#label}: поле должно быть строкой',
     '*': '{#label}: поле - лишнее',
   },
 };
